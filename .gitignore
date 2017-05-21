@@ -1,0 +1,15 @@
+# Scripts
+*.sh
+
+# InteliJ
+.idea
+stock-market-analysis.iml
+
+# Gradle Build Folder
+.gradle
+
+# Mac
+.DS_Store
+
+# Password File
+password.txt
