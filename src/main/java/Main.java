@@ -1,4 +1,3 @@
-import java.math.BigDecimal;
 import java.io.*;
 import java.util.Map;
 
@@ -15,28 +14,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
-public class Main {
+public class Main extends Key {
     public static void main(String[] args) {
 
-        // password file
-        InputStream is;
-
-        try {
-            is = new FileInputStream("password.txt");
-        } catch (FileNotFoundException e) {
-            System.out.println("Error, password file not found");
-            e.printStackTrace();
-        }
-
-        // read password
-        final String password;
-        try {
-            BufferedReader buf = new BufferedReader(new InputStreamReader(is));
-            password = buf.readLine();
-        } catch (IOException e) {
-            System.out.println("Error reading password input");
-            e.printStackTrace();
-        }
 
 
         // stock initialition
@@ -88,50 +68,14 @@ public class Main {
         // Refrence for stock methods
         // http://financequotes-api.com/javadoc/yahoofinance/quotes/stock/StockQuote.html
 
-        // mail client setup
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
-        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("tlee753server", password);
-                    }});
 
-        // mail message setup
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("tlee753server@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO,
-                    // InternetAddress.parse("8606708284@vzwpix.com")); // JON
-                    // InternetAddress.parse("4702634639@message.ting.com")); // LAUREN
-                    // InternetAddress.parse("7705708727@vzwpix.com")); // BRANDON
-                    InternetAddress.parse("6787391126@vzwpix.com"));
-
-            // email
-            message.setSubject("Testing Java App");
-            message.setText(
-
-                "Stop being a bitch clues, start investing: \n" +
-                messageString.toString()
-
-            );
-
-            // send message
-            Transport.send(message);
-            System.out.println("Done");
-
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
 
 /*
-* TODO make a string building class (desired stock info)
+* xTODO make a string building class (desired stock info)
 * TODO move elements to seperate methods
+* TODO allow for command line arguments to be passed in for server side ease of use
+* TODO create a user object with stocks and how to contact them
 * TODO two way capability
 * TODO other features
 * - sports scores
