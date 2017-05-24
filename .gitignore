@@ -3,10 +3,7 @@
 
 # InteliJ
 .idea
-stock-market-analysis.iml
-
-# Gradle Build Folder
-.gradle
+*.iml
 
 # Mac
 .DS_Store
